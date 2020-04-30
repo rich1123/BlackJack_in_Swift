@@ -26,37 +26,37 @@ let faces = ["H", "S", "D", "C"]
 //deck build
 for suit in faces {
     
-    for face, value in {
-        [('A', 1), ('2', 2), ('3', 3), ('4', 4),('5', 5), ('6', 6), ('7', 7), ('8', 8), ('9', 9), ('10', 10), ('J', 10), ('Q', 10), ('K', 10)]
+    for (face, value) in {
+        [("A", 1), ("2", 2), ("3", 3), ("4", 4),("5", 5), ("6", 6), ("7", 7), ("8", 8), ("9", 9), ("10", 10), ("J", 10), ("Q", 10), ("K", 10)]
         name = (f"{face} of {suit}")
         undealt[name] = value
 }
 }
-def move_card(from_hand: dict, to_hand: dict, card: str):
+func move_card(from_hand: dict, to_hand: dict, card: str):
     to_hand[card] = from_hand.pop(card)
 
 
-def mv_random_card(to_hand: dict):
+func mv_random_card(to_hand: dict):
     random_card = random.choice(list(undealt.keys()))
     move_card(undealt, to_hand, random_card)
 
 
-def comp_build(c_card: set):
+func comp_build(c_card: set):
     comp_hand.update(c_card)
     return comp_hand
 
 
-def player_build(p_card: set):
+func player_build(p_card: set):
     player_hand.update(p_card)
     return player_hand
 
 
-def show_status():
+func show_status():
     print(f"Dealer's show card ...{next(iter(comp_hand))}\n")
     print(f"Player showing .......{player_hand}\n")
 
 
-def winner():
+func winner():
     if hv(comp_hand) == hv(player_hand):
         # self.dealer_play(hv(comp_hand))
         print("That's a draw.\n")
@@ -104,7 +104,7 @@ class Hit {
 }
 }
 
-def blackjack(v_sum: int):
+func blackjack(v_sum: int):
     if v_sum > 21:
         print(f"You busted:..... {v_sum}\n")
         new_round()
@@ -115,7 +115,7 @@ def blackjack(v_sum: int):
         pass
 
 
-def new_round():
+func new_round():
     print("Let's play again...\n")
     undeal_cards(player_hand)
     undeal_cards(comp_hand)
@@ -126,13 +126,13 @@ def new_round():
     show_status()
 
 
-def undeal_cards(hand: dict):
+func undeal_cards(hand: dict):
 var cards: ListFormatter = list(hand.keys())
 for card in cards{
         move_card(hand, undealt, card)
 }
 
-def main(self=None):
+func main(self=None):
     # print(undealt)
     print("\nWELCOME TO THE BLACKJACK TABLE")
     mv_random_card(player_hand)
