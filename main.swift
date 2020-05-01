@@ -35,8 +35,8 @@ for suit in faces {
     }
 }
 
-func move_card(from_hand: [String: Int], to_hand: dict, card: str) {
-    var to_hand[card] = from_hand.pop(card);
+func move_card(from_hand: Dictionary <String, Int>, to_hand: Dictionary <String, Int>, card: String) {
+    var to_hand.updateValue(card) = from_hand.pop(card)
 }
 
 
@@ -58,8 +58,8 @@ func player_build(p_card: (String: Int)) {
 }
 
 func show_status() {
-    print(f"Dealer's show card ...{next(iter(comp_hand))}\n")
-    print(f"Player showing .......{player_hand}\n")
+    print("Dealer's show card ...\({next(iter(comp_hand))})\n")
+    print("Player showing .......\(player_hand)\n")
 }
 
 func winner() {
@@ -69,11 +69,11 @@ func winner() {
         new_round()
     }
     if hv(comp_hand) > hv(player_hand) {
-        print(f"Dealer's high {hv(comp_hand)} to {hv(player_hand)}... Loser!!!\n")
+        print("Dealer's high \(hv(comp_hand)) to \(hv(player_hand))... Loser!!!\n")
         new_round()
     }
-    default hv(comp_hand) < hv(player_hand) {
-        print(f"Dealer's low {hv(comp_hand)} to {hv(player_hand)}... Winner!!!\n")
+    else hv(comp_hand) < hv(player_hand) {
+        print("Dealer's low \(hv(comp_hand)) to \(hv(player_hand))... Winner!!!\n")
         new_round()
     }}
 
@@ -81,16 +81,18 @@ class Hit {
     pass
 
     func input_player_action(self) {
-        """
-
-        :rtype: object
-        """
-        action = input("[H]it, [S]tand, or [Q]uit \n").upper()
+      //
+        //:rtype: object
+        //"""
+//    var action = input("[H]it, [S]tand, or [Q]uit \n").upper()  python version for user input
+        print("[H]it, [S]tand, or [Q]uit \n", terminator: ".")
+        let action = readLine()
     if action == "H"{
             mv_random_card(player_hand)
             print(f"{player_hand}...And you're holding {hv(player_hand)}\n")
             blackjack(hv(player_hand))
             Hit.input_player_action(self)
+        }
     elif action == "Q" {
             print("goodbye")
             sys.exit(0)
