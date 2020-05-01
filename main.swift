@@ -23,28 +23,34 @@ var player_hand: [String: Int] = [:]
 var undealt: [String: Int] = [:]
 
 let faces = ["H", "S", "D", "C"]
+
+let deck = [("A", 1), ("2", 2), ("3", 3), ("4", 4),("5", 5), ("6", 6), ("7", 7), ("8", 8), ("9", 9), ("10", 10), ("J", 10), ("Q", 10), ("K", 10)]
 //deck build
+
 for suit in faces {
     
-    for (face, value) in {
-        [("A", 1), ("2", 2), ("3", 3), ("4", 4),("5", 5), ("6", 6), ("7", 7), ("8", 8), ("9", 9), ("10", 10), ("J", 10), ("Q", 10), ("K", 10)]
-        name = (f"{face} of {suit}")
-        undealt[name] = value
+    for (face, value) in [("A", 1), ("2", 2), ("3", 3), ("4", 4),("5", 5), ("6", 6), ("7", 7), ("8", 8), ("9", 9), ("10", 10), ("J", 10), ("Q", 10), ("K", 10)] {
+            let name = String(format: "\(face) of \(suit)")
+            undealt[name] = value
+    }
 }
-}
+
 func move_card(from_hand: [String: Int], to_hand: dict, card: str) {
-    var to_hand[card] = from_hand.pop(card)
+    var to_hand[card] = from_hand.pop(card);
 }
+
 
 func mv_random_card(to_hand: [String: Int]) {
     var random_card = random.choice(list(undealt.keys()))
     move_card(undealt, to_hand, random_card)
 }
 
-func comp_build(c_card: (String: Int)) {
+func comp_build(c_card: (String: Int)) -> Dictionary {
     var comp_hand.update(c_card)
     return comp_hand
 }
+
+var comp_hand = comp_build(c_card: <#T##(Int)#>)
 
 func player_build(p_card: (String: Int)) {
     var player_hand.update(p_card)
@@ -58,7 +64,7 @@ func show_status() {
 
 func winner() {
     if hv(comp_hand) == hv(player_hand) {
-        # self.dealer_play(hv(comp_hand))
+        //self.dealer_play(hv(comp_hand))
         print("That's a draw.\n")
         new_round()
     }
@@ -80,16 +86,16 @@ class Hit {
         :rtype: object
         """
         action = input("[H]it, [S]tand, or [Q]uit \n").upper()
-    if action == 'H'{
+    if action == "H"{
             mv_random_card(player_hand)
             print(f"{player_hand}...And you're holding {hv(player_hand)}\n")
             blackjack(hv(player_hand))
             Hit.input_player_action(self)
-    elif action == 'Q' {
+    elif action == "Q" {
             print("goodbye")
             sys.exit(0)
     }
-    elif action == 'S' {
+    elif action == "S" {
             print(f"...Dealers showing ...{hv(comp_hand)}")
             print(f"...And you're holding {hv(player_hand)}\n")
             Hit.dealer_play(self, hv(comp_hand))}
@@ -151,7 +157,7 @@ for card in cards{
     new_round()
     print("flag main")
 while True {
-        # show_status()
+        // show_status()
         Hit.input_player_action(self)
 }
     # comp_build(c_card=tuple)
